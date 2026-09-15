@@ -796,6 +796,9 @@ elif page == "✦ AI Copilot":
             elif "fleet" in question.lower():
 
                 available = fleet[
-                    fleet["status"].str.lower().isin(
+                    fleet["status"].str.lower().isin
+                    (
                         ["idle", "available"]
+                    )
+                ]
 # ChainGuard AI MVP
