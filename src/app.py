@@ -794,6 +794,7 @@ elif page == "✦ AI Copilot":
                     )
 
            elif "fleet" in question.lower():
+elif "fleet" in question.lower():
 
                 available = fleet[
                     fleet["status"].str.lower().isin(
@@ -856,90 +857,4 @@ elif page == "✦ AI Copilot":
                     st.info(
                         "No high-risk shipments require immediate attention."
                     )
-
-    st.divider()
-
-    st.subheader("Ask ChainGuard AI")
-
-    user_question = st.text_input(
-        "Enter your question"
-    )
-
-    if user_question:
-
-        question = user_question.lower()
-
-        if "risk" in question:
-
-            top = shipments.sort_values(
-                "risk_score",
-                ascending=False
-            ).iloc[0]
-
-            st.info(
-                f"The highest-risk shipment is "
-                f"**{top['shipment_id']}** with a risk "
-                f"score of **{top['risk_score']} "
-                f"({top['risk_level']})**."
-            )
-
-        elif "disruption" in question:
-
-            st.info(
-                f"There are **{len(disruptions)} "
-                f"active disruptions** affecting "
-                f"**{int(shipments['affected'].sum())} "
-                f"shipment(s)**."
-            )
-
-        elif "fleet" in question:
-
-            available_fleet = fleet[
-                fleet["status"].str.lower().isin(
-                    ["idle", "available"]
-                )
-            ]
-
-            st.info(
-                f"There are **{len(available_fleet)}** vehicles "
-                f"currently idle or available for "
-                f"redeployment."
-            )
-
-        elif "cold" in question or "temperature" in question:
-
-            cold_chain_shipments = shipments[
-                shipments["cold_chain"] == True
-            ]
-
-            temperature_data = {
-                "SHP001": 5.2,
-                "SHP004": 8.7,
-                "SHP008": 4.1
-            }
-
-            excursions = sum(
-                1 for temperature in temperature_data.values()
-                if temperature > 8
-            )
-
-            st.info(
-                f"There are **{len(cold_chain_shipments)}** "
-                f"cold-chain shipments being monitored, "
-                f"with **{excursions}** temperature excursion(s)."
-            )
-
-        else:
-
-            st.info(
-                "I can help analyze shipment risk, "
-                "disruptions, fleet availability and "
-                "cold-chain conditions. Try asking about "
-                "one of those areas."
-            )
-
-    st.caption(
-        "AI Copilot responses are generated from the "
-        "current ChainGuard AI demonstration dataset."
-    )
-# ChainGuard AI MVP
+                    # ChainGuard AI MVP
