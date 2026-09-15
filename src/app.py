@@ -794,7 +794,6 @@ elif page == "✦ AI Copilot":
                     )
 
            elif "fleet" in question.lower():
-elif "fleet" in question.lower():
 
                 available = fleet[
                     fleet["status"].str.lower().isin(
